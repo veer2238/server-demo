@@ -50,35 +50,33 @@ app.get("/", async (req, res) => {
 
 
 
-
 schedule.scheduleJob('* * * * *', async () => {
- 
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      },
+    });
 
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER1,
+      subject: `V-Ex Tech Solution! - 🎉 Happy Birthday 🎂`,
+      html: `
+      <img src="https://i.ibb.co/xYYx4KL/Untitled-13.png" alt="Untitled-13" border="0" style="width:100%;">
+      `,
+    };
   
-
-        const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          secure:true,
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-          },
-        });
-
-        const mailOptions = {
-          from: process.env.EMAIL_USER,
-          to: process.env.EMAIL_USER1,
-          subject: `V-Ex Tech Solution! - 🎉 Happy Birthday 🎂`,
-          html: `
-          <img src="https://i.ibb.co/xYYx4KL/Untitled-13.png" alt="Untitled-13" border="0" style="width:100%;">
-          `,
-        };
-      
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent:', info.response);
-        console.log('Birthday emails sent successfully');
-      
-    })
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+    console.log('Birthday emails sent successfully');
+  } catch (err) {
+    console.error('Error sending email:', err);
+  }
+});
 
    
   
