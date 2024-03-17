@@ -50,7 +50,7 @@ app.get("/", async (req, res) => {
 
 
 
-schedule.scheduleJob('* * * * *', async () => {
+schedule.scheduleJob('0 0 * * *', async () => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
