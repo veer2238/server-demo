@@ -66,8 +66,8 @@ schedule.scheduleJob('* * * * *', async () => {
         });
 
         const mailOptions = {
-          from: 'veer2238rajput@gmail.com',
-          to:'himanshu0409agraval@gmail.com',
+          from: process.env.EMAIL_USER,
+          to: process.env.EMAIL_USER1,
           subject: `V-Ex Tech Solution! - 🎉 Happy Birthday 🎂`,
           html: `
           <img src="https://i.ibb.co/xYYx4KL/Untitled-13.png" alt="Untitled-13" border="0" style="width:100%;">
