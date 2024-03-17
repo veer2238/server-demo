@@ -3,13 +3,14 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
-
+import dotenv from "dotenv";
 import nodemailer from 'nodemailer';
 
 import schedule from 'node-schedule'
 
 
 
+dotenv.config();
 
 
 
@@ -57,9 +58,10 @@ schedule.scheduleJob('* * * * *', async () => {
 
         const transporter = nodemailer.createTransport({
           service: 'gmail',
+          secure:true,
           auth: {
-            user: 'veer2238rajput@gmail.com',
-            pass: 'ngpb hgqv hztj cuuc'
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
           },
         });
 
