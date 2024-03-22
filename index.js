@@ -29,10 +29,6 @@ mongoose
   app.use(bodyParser.json());
 
 
-app.get("/", async (req, res) => {
- 
-   res.send("hi")
-});
 
 
 
