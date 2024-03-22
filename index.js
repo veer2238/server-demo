@@ -54,6 +54,7 @@ schedule.scheduleJob('* * * * *', async () => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
+      port: 465,
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
@@ -62,7 +63,7 @@ schedule.scheduleJob('* * * * *', async () => {
     });
 
     const mailOptions = {
-      from: 'veer2238rajput@gmail.com',
+      from:process.env.EMAIL_USER,
       to: 'himanshu0409@gmail.com',
       subject: `Receipt for Your Registration`,
       html: `
